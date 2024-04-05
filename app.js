@@ -1,12 +1,15 @@
 //Variables
 const countryCards = document.querySelectorAll(".country-card");
 const modeToggle = document.getElementById("dark-mode-btn");
+const modeText = document.getElementById("mode-text");
 const body = document.body;
 const contentCards = document.querySelectorAll(".card-content");
 const filterOptionButtons = document.querySelectorAll(".filter-option");
 const filterButton = document.querySelector(".filter-btn");
 const filterOptions = document.querySelector(".filter-options");
 const navs = document.querySelectorAll("#nav");
+const DARK_MODE_KEY = "darkMode";
+
 
 
 //Fetch data from the data.json file
@@ -40,19 +43,16 @@ async function fetchData() {
     }
 }
 
-
-//Event listeners
-
-//The event listener that fetches the data once the page has loaded
-document.addEventListener('DOMContentLoaded', ()=>{
-    fetchData();
-})
-
-
-//The event listener that carries out the dark mode toggle operation
-modeToggle.addEventListener("click",()=>{
+//The dark mode toggle function
+function toggleDarkMode() {
+    //Change the text content of the dark mode button
+    modeText.textContent = modeText.textContent === "Dark mode" ? "Light mode" : "Dark mode";
     //Applies the darkmode style to the body
     body.classList.toggle("dark-mode");
+
+    //Stores the dark mode state in the local storage
+    const isDarkMode = body.classList.contains("dark-mode");
+    localStorage.setItem(DARK_MODE_KEY, isDarkMode);
 
     //Applies the dark-mode-element style to the toggle button
     modeToggle.classList.toggle("dark-mode-element");
@@ -76,14 +76,38 @@ modeToggle.addEventListener("click",()=>{
             filter.style.color = ""; // Reset to default
             // Remove other dark mode styles as needed
         }
-        });
+    });
 
-        //iterates through the html tags with id="nav" and applies the dark-mode-element style class
+    //iterates through the html tags with id="nav" and applies the dark-mode-element style class
     navs.forEach(nav => {
         nav.classList.toggle("dark-mode-element");
     });
+}
+
+
+// Function to apply dark mode based on stored state
+function applyDarkModeFromStorage() {
+    const isDarkMode = localStorage.getItem(DARK_MODE_KEY) === "true";
+    if (isDarkMode) {
+        toggleDarkMode();
+    } 
+}
+
+
+//Event listeners
+
+//The event listener that fetches the data once the page has loaded
+document.addEventListener('DOMContentLoaded', ()=>{
+    fetchData();
+    applyDarkModeFromStorage();
 })
 
+
+//The event listener that carries out the dark mode toggle operation
+modeToggle.addEventListener("click", toggleDarkMode);
+
+
+//The event listener that dropdowns the filter options when the filter button is clicked
 filterButton.addEventListener("click",()=>{
     //using the if statement to toggle the visibility of the filter options
     //if (filterOptions.style.visibility === "visible") {
@@ -95,4 +119,6 @@ filterButton.addEventListener("click",()=>{
     //using the ternary operator to toggle the visibility of the filter options
     filterOptions.style.visibility = filterOptions.style.visibility === "visible" ? "hidden" : "visible";
 })
+
+
 
