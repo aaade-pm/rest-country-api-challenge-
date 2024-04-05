@@ -3,6 +3,9 @@ const countryCards = document.querySelectorAll(".country-card");
 const modeToggle = document.getElementById("dark-mode-btn");
 const body = document.body;
 const contentCards = document.querySelectorAll(".card-content");
+const filterOptionButtons = document.querySelectorAll(".filter-option");
+const filterButton = document.querySelector(".filter-btn");
+const filterOptions = document.querySelector(".filter-options");
 const navs = document.querySelectorAll("#nav");
 
 
@@ -54,10 +57,26 @@ modeToggle.addEventListener("click",()=>{
     //Applies the dark-mode-element style to the toggle button
     modeToggle.classList.toggle("dark-mode-element");
 
+    //Applies the dark-mode-element style to the filter options
+    filterOptions.classList.toggle("dark-mode-element");
+
     //iterates through the content of the country card and applies the dark-mode-element style class
     contentCards.forEach(card => {
         card.classList.toggle("dark-mode-element");
     });
+
+    //iterates through the filter options and applies the dark-mode-element style class
+    filterOptionButtons.forEach(filter => { 
+        if (body.classList.contains("dark-mode")) {
+            filter.style.backgroundColor = "var(--dark-mode-elements)";
+            filter.style.color = "var(--multi-use-color)";
+            // Add other dark mode styles as needed
+        } else {
+            filter.style.backgroundColor = ""; // Reset to default
+            filter.style.color = ""; // Reset to default
+            // Remove other dark mode styles as needed
+        }
+        });
 
         //iterates through the html tags with id="nav" and applies the dark-mode-element style class
     navs.forEach(nav => {
@@ -65,4 +84,15 @@ modeToggle.addEventListener("click",()=>{
     });
 })
 
+filterButton.addEventListener("click",()=>{
+    //using the if statement to toggle the visibility of the filter options
+    //if (filterOptions.style.visibility === "visible") {
+    //filterOptions.style.visibility = "hidden";
+    //} else if (filterOptions.style.visibility === "hidden") {
+    //filterOptions.style.visibility = "visible";
+    //}
+
+    //using the ternary operator to toggle the visibility of the filter options
+    filterOptions.style.visibility = filterOptions.style.visibility === "visible" ? "hidden" : "visible";
+})
 

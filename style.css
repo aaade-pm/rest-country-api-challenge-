@@ -86,6 +86,10 @@ nav p i{
     outline: none;
 }
 
+.filter-section{
+    display: grid;
+}
+
 .filter-btn{
     width: 200px;
     box-shadow: var(--light-box-shadow);
@@ -95,6 +99,35 @@ nav p i{
     align-items: center;
     padding: 8px 8px;
 
+}
+
+.filter-options{
+    display: grid;
+    position: absolute;
+    top: 128px;
+    left: (100%-30px);
+    width: 200px;
+    background-color: var(--multi-use-color);
+    box-shadow: var(--light-box-shadow);
+    border-radius: 12px;
+    visibility: hidden;
+}
+
+.filter-options button{
+    width: 100%;
+    padding: 10px 0px 0px 20px;
+    text-align: left;
+    border: none;
+    background-color: var(--multi-use-color);
+    color: var(--light-mode-text);
+}
+
+.first-btn{
+    margin-top: 10px;
+}
+
+.last-btn{
+    margin-bottom: 10px;
 }
 
 main{
@@ -168,6 +201,10 @@ img{
         display: grid;
         padding: 90px 10px 30px 10px;
         gap: 30px;
+    }
+
+    .filter-options{
+        top: 190px;
     }
 }
 
