@@ -44,10 +44,6 @@ button{
     background-color: var(--multi-use-color);
 }
 
-nav h1{
-    font-weight: 800;
-}
-
 nav p i{
     margin-right: 7px;
 }
@@ -156,4 +152,64 @@ img{
 .dark-mode-element::placeholder{
     color: var(--multi-use-color);
 }
+
+
+/****writing media queries****/
+@media screen and (max-width: 480px){
+    main{
+        grid-template-columns: repeat(1,1fr);
+    }
+
+    nav{
+        padding: 20px 10px;
+    }
+
+    .search-container{
+        display: grid;
+        padding: 90px 10px 30px 10px;
+        gap: 30px;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px){
+    main{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    nav{
+        padding: 20px 30px;
+    }
+
+    .search-container{
+        padding: 90px 30px 30px 30px;
+        gap: 20px;
+    }
+
+}
+@media screen and (min-width: 768px) and (max-width: 1024px){
+    main{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    nav{
+        padding: 20px 30px;
+    }
+
+    .search-container{
+        padding: 90px 30px 30px 30px;
+        gap: 20px;
+    }
+
+    .country-card{
+        height: 350px;
+    }
+
+    .card-content{
+        padding-top: 30px;
+    }
+
+}
+
 
